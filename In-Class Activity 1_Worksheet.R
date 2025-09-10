@@ -273,14 +273,15 @@ ggplot(kills.long, aes(x = nKills, fill = Gender)) +
 ggplot(kills.long, aes(x = Season, y = nKills, color = Gender, group = Character)) + 
   geom_line() +
   scale_x_continuous(limits = c(0.5, 7.5), breaks = 1:6, labels = c(1:5, "six"))
-  
+
 # TASK 10.2 — Boxplot of nKills by Gender.
-### YOUR CODE HERE ###
+ggplot(kills.long, aes(x = Gender, y = nKills)) + geom_boxplot()
 
 # TASK 10.3 — (Optional) Rename the x-axis categories to "Women" and "Men" via
 #   scale_x_discrete(labels = c("Women","Men"))
-### YOUR CODE HERE ###
-
+ggplot(kills.long, aes(x = Gender, y = nKills)) + 
+  geom_boxplot() +
+  scale_x_discrete(labels = c("Women", "Men"))
 
 
 ######################################
@@ -290,18 +291,27 @@ ggplot(kills.long, aes(x = Season, y = nKills, color = Gender, group = Character
 # TASK 11.1 — Histogram with custom theme:
 #   - axis.text size 18, color "green", angle 45
 #   - y-axis title family "mono", size 24
-### YOUR CODE HERE ###
+ggplot(kills.long, aes(x = nKills)) +
+  geom_histogram(binwidth = 10) +
+  theme(axis.text = element_text(size = 18, color = "green", angle = 45),
+        axis.title.y = element_text(family = "mono", size = 24))
 
 # TASK 11.2 — Season vs nKills lines with color = Gender and a custom legend title
 #   via scale_colour_discrete(name = "New Title"), and legend positioned at (0.15, 0.85).
-### YOUR CODE HERE ###
+ggplot(kills.long, aes(x = Season, y = nKills, color = Gender, group = Character)) + 
+  geom_line() +
+  scale_colour_discrete(name = "New Title") +
+  theme(legend.position = c(0.15, 0.85))
 
 # TASK 11.3 — Season vs nKills lines with the entire y-axis removed (title, text, ticks).
 #   HINT: theme(axis.title.y = element_blank(),
 #               axis.text.y  = element_blank(),
 #               axis.ticks.y = element_blank())
-### YOUR CODE HERE ###
-
+ggplot(kills.long, aes(x = Season, y = nKills, color = Gender, group = Character)) + 
+  geom_line() +
+  theme(axis.title.y = element_blank(),
+        axis.text.y  = element_blank(),
+        axis.ticks.y = element_blank())
 
 
 ######################################
@@ -310,7 +320,7 @@ ggplot(kills.long, aes(x = Season, y = nKills, color = Gender, group = Character
 
 # TASK 12.1 — Look at the range of nKills (rounded) ignoring NAs.
 # HINT: round(range(kills.long$nKills, na.rm = TRUE))
-### YOUR CODE HERE ###
+round(range(kills.long$nKills, na.rm = TRUE))
 
 # TASK 12.2 — Make a column chart (geom_col) of nKills by Character:
 #   - y-axis 0 to 75 with breaks at 0, 25, 50, 75
@@ -319,8 +329,11 @@ ggplot(kills.long, aes(x = Season, y = nKills, color = Gender, group = Character
 # HINT: scale_y_continuous(limits = c(0, 75), breaks = c(0, 25, 50, 75))
 #       theme(axis.text.x = element_text(angle = 90))
 #       facet_wrap(~Season, ncol = 2)
-### YOUR CODE HERE ###
-
+ggplot(kills.long, aes(x = Character, y = nKills)) +
+  geom_col() +
+  scale_y_continuous(limits = c(0, 75), breaks = c(0, 25, 50, 75)) +
+  theme(axis.text.x = element_text(angle = 90)) +
+  facet_wrap(~Season, ncol = 2)
 
 
 ################################################################################
