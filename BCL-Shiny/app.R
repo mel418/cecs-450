@@ -3,7 +3,7 @@ library(ggplot2)
 library(dplyr)
 
 # Load the BC Liquor data
-bcl <- read.csv("bcl-data.csv", stringsAsFactors = FALSE)
+bcl <- read.csv("BCL-Shiny/bcl-data.csv", stringsAsFactors = FALSE)
 
 # Clean the data - remove rows with missing values for key variables
 bcl <- bcl %>%
@@ -11,7 +11,7 @@ bcl <- bcl %>%
 
 # Define UI
 ui <- fluidPage(
-  titlePanel("BC Liquor Store Prices", windowTitle = "CECS 614 Lecture 7"),
+  titlePanel("BC Liquor Store Prices", windowTitle = "CECS 450"),
   
   sidebarLayout(
     sidebarPanel(
